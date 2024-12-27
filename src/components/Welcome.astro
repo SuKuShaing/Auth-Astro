@@ -1,6 +1,10 @@
 ---
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
+
+import { SignIn, SignOut } from 'auth-astro/components';
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
 ---
 
 <div id="container">
@@ -14,9 +18,17 @@ import background from '../assets/background.svg';
 				Aplicación para hacer inicio de sesión con Auth
 			</h1>
 			<section id="links">
-				<a class="button" href="https://docs.astro.build">Inicia sesión con Google</a>
-				<a class="button" href="https://docs.astro.build">Inicia sesión con Google</a>
-				<a class="button" href="https://docs.astro.build">Inicia sesión con Google</a>
+				{
+					session ? (
+						<div class="contenidoSesion">
+							<img src={session.user?.image} alt="imagen del usuario" width="50" height="50" />
+							<p>Hola <strong>{session.user?.name}</strong> con mail de <strong>{session.user?.email}</strong></p>
+							<SignOut>Cerrar sesión</SignOut>
+						</div>
+					) : (
+						<SignIn provider="google">Iniciar con Google</SignIn>
+					)
+				}
 			</section>
 		</section>
 	</main>
@@ -80,16 +92,18 @@ import background from '../assets/background.svg';
 		margin-left: 8px;
 	}
 
-	#links a.button {
+	#links button {
+		padding: 10px 12px;
 		color: white;
 		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
 		box-shadow:
 			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
 			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
 		border-radius: 10px;
+		border: none;
 	}
 
-	#links a.button:hover {
+	#links button:hover {
 		color: rgb(230, 230, 230);
 		box-shadow: none;
 	}
@@ -149,6 +163,13 @@ import background from '../assets/background.svg';
 
 	#news:hover {
 		background: rgba(255, 255, 255, 0.55);
+	}
+
+	.contenidoSesion {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
 	}
 
 	@media screen and (max-height: 368px) {
