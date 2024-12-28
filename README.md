@@ -3,7 +3,21 @@
 Siguiendo el tutorial de Manu Martines
 https://youtu.be/VNTpMg3uiMc?si=rqm0pXpR_ECtIpxF
 
+Vamos a usar la librería Auth-Astro para autentificar usuarios en Astro
 Permite iniciar sesión con Google, Facebook, Twitter, Github, Microsoft, Apple y correo electrónico.
+https://github.com/nowaythatworked/auth-astro
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

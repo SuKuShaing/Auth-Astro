@@ -27,6 +27,8 @@ const session = await getSession(Astro.request);
 						</div>
 					) : (
 						<SignIn provider="google">Iniciar con Google</SignIn>
+						<SignIn provider="github">Iniciar con GitHub</SignIn>
+						<SignIn provider="twitch">Iniciar con Twitch</SignIn>
 					)
 				}
 			</section>
